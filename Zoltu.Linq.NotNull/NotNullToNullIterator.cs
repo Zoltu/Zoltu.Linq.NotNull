@@ -22,6 +22,8 @@ namespace Zoltu.Linq.NotNull
 
 		public NotNullToNullIterator(INotNullEnumerable<T> source)
 		{
+			Contract.Requires(source != null);
+
 			_source = source;
 		}
 

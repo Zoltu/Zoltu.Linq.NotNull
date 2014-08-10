@@ -19,6 +19,9 @@ namespace Zoltu.Linq.NotNull
 
 		public SelectIterator(INotNullEnumerable<TSource> source, Func<TSource, TResult> predicate)
 		{
+			Contract.Requires(source != null);
+			Contract.Requires(predicate != null);
+
 			_source = source;
 			_predicate = predicate;
 		}
