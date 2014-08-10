@@ -117,8 +117,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Zoltu.Collections.Generic.NotNull">
-      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.4.0\lib\net451\Zoltu.Collections.Generic.NotNull.dll</HintPath>
+    <Reference Include="Zoltu.Collections.Generic.NotNull, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.5.0\lib\net451\Zoltu.Collections.Generic.NotNull.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
