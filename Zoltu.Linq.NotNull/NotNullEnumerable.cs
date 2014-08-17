@@ -204,6 +204,17 @@ namespace Zoltu.Linq.NotNull
 			return dictionary;
 		}
 
+		public static NotNullDictionary<TKey, TSource> ToDictionary<TSource, TKey>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+		{
+			Contract.Requires(keySelector != null);
+			Contract.Ensures(Contract.Result<NotNullDictionary<TKey, TSource>>() != null);
+
+			if (source == null)
+				return new NotNullDictionary<TKey, TSource>();
+
+			return ToDictionary(source, keySelector, x => x);
+		}
+
 		public static Int32 Count<T>(this INotNullEnumerable<T> source)
 		{
 			Contract.Ensures(Contract.Result<Int32>() >= 0);
