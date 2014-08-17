@@ -179,6 +179,31 @@ namespace Zoltu.Linq.NotNull
 			return list;
 		}
 
+		public static NotNullDictionary<TKey, TValue> ToDictionary<TSource, TKey, TValue>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TValue> valueSelector)
+		{
+			Contract.Requires(keySelector != null);
+			Contract.Requires(valueSelector != null);
+			Contract.Ensures(Contract.Result<NotNullDictionary<TKey, TValue>>() != null);
+
+			if (source == null)
+				return new NotNullDictionary<TKey, TValue>();
+
+			var dictionary = new NotNullDictionary<TKey, TValue>();
+			foreach (var item in source)
+			{
+				var key = keySelector(item);
+				if (key == null)
+					continue;
+
+				var value = valueSelector(item);
+				if (value == null)
+					continue;
+
+				dictionary.Add(key, value);
+			}
+			return dictionary;
+		}
+
 		public static Int32 Count<T>(this INotNullEnumerable<T> source)
 		{
 			Contract.Ensures(Contract.Result<Int32>() >= 0);
