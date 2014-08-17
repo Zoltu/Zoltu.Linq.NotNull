@@ -9,8 +9,11 @@ namespace Zoltu.Linq.NotNull
 	{
 		public static INotNullEnumerable<TResult> Select<TSource, TResult>(this INotNullEnumerable<TSource> source, Func<TSource, TResult> predicate)
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
+
+			if (source == null)
+				return new NotNullList<TResult>();
 
 			return new SelectIterator<TSource, TResult>(source, predicate);
 		}
@@ -18,31 +21,41 @@ namespace Zoltu.Linq.NotNull
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		public static INotNullEnumerable<TResult> SelectAndSwallow<TSource, TResult, TException>(this INotNullEnumerable<TSource> source, Func<TSource, TResult> predicate) where TException : Exception
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
+
+			if (source == null)
+				return new NotNullList<TResult>();
 
 			return new SelectAndSwallowIterator<TSource, TResult, TException>(source, predicate);
 		}
 
 		public static INotNullEnumerable<TResult> SelectAndSwallow<TSource, TResult>(this INotNullEnumerable<TSource> source, Func<TSource, TResult> predicate)
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
+
+			if (source == null)
+				return new NotNullList<TResult>();
 
 			return new SelectAndSwallowIterator<TSource, TResult, Exception>(source, predicate);
 		}
 
 		public static INotNullEnumerable<T> Where<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<T>>() != null);
+
+			if (source == null)
+				return new NotNullList<T>();
 
 			return new WhereIterator<T>(source, predicate);
 		}
 
 		public static T FirstOrDefault<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			if (source == null)
+				return default(T);
 
 			var enumerator = source.GetEnumerator();
 			if (enumerator.MoveNext())
@@ -53,8 +66,10 @@ namespace Zoltu.Linq.NotNull
 
 		public static T FirstOrDefault<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+
+			if (source == null)
+				return default(T);
 
 			return source
 				.Where(predicate)
@@ -63,7 +78,8 @@ namespace Zoltu.Linq.NotNull
 
 		public static T First<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
+			Contract.Ensures(Contract.Result<T>() != null);
 
 			var enumerator = source.GetEnumerator();
 			if (enumerator.MoveNext())
@@ -74,8 +90,9 @@ namespace Zoltu.Linq.NotNull
 
 		public static T First<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
-			Contract.Requires(source != null);
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<T>() != null);
 
 			return source
 				.Where(predicate)
@@ -84,7 +101,8 @@ namespace Zoltu.Linq.NotNull
 
 		public static T Single<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
+			Contract.Ensures(Contract.Result<T>() != null);
 
 			var enumerator = source.GetEnumerator();
 			if (!enumerator.MoveNext())
@@ -99,8 +117,9 @@ namespace Zoltu.Linq.NotNull
 
 		public static T Single<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
-			Contract.Requires(source != null);
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
 			Contract.Requires(predicate != null);
+			Contract.Ensures(Contract.Result<T>() != null);
 
 			return source
 				.Where(predicate)
@@ -109,7 +128,8 @@ namespace Zoltu.Linq.NotNull
 
 		public static T SingleOrDefault<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			if (source == null)
+				return default(T);
 
 			var enumerator = source.GetEnumerator();
 			if (!enumerator.MoveNext())
@@ -124,8 +144,10 @@ namespace Zoltu.Linq.NotNull
 
 		public static T SingleOrDefault<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
-			Contract.Requires(source != null);
 			Contract.Requires(predicate != null);
+
+			if (source == null)
+				return default(T);
 
 			return source
 				.Where(predicate)
@@ -134,14 +156,20 @@ namespace Zoltu.Linq.NotNull
 
 		public static IEnumerable<T> NotNullToNull<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null);
+
+			if (source == null)
+				return new List<T>();
 
 			return new NotNullToNullIterator<T>(source);
 		}
 
 		public static NotNullList<T> ToList<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			Contract.Ensures(Contract.Result<NotNullList<T>>() != null);
+
+			if (source == null)
+				return new NotNullList<T>();
 
 			var list = new NotNullList<T>();
 			foreach (var item in source)
@@ -153,7 +181,10 @@ namespace Zoltu.Linq.NotNull
 
 		public static Int32 Count<T>(this INotNullEnumerable<T> source)
 		{
-			Contract.Requires(source != null);
+			Contract.Ensures(Contract.Result<Int32>() >= 0);
+
+			if (source == null)
+				return 0;
 
 			var sourceList = source as NotNullList<T>;
 			if (sourceList != null)
