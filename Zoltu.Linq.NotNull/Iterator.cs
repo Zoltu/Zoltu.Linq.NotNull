@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using Zoltu.Collections.Generic.NotNull;
 
 namespace Zoltu.Linq.NotNull

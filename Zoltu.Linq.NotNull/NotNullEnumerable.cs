@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using Zoltu.Collections.Generic.NotNull;
 
@@ -154,16 +153,6 @@ namespace Zoltu.Linq.NotNull
 				.SingleOrDefault();
 		}
 
-		public static IEnumerable<T> NotNullToNull<T>(this INotNullEnumerable<T> source)
-		{
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null);
-
-			if (source == null)
-				return new List<T>();
-
-			return new NotNullToNullIterator<T>(source);
-		}
-
 		public static NotNullList<T> ToList<T>(this INotNullEnumerable<T> source)
 		{
 			Contract.Ensures(Contract.Result<NotNullList<T>>() != null);
@@ -179,11 +168,11 @@ namespace Zoltu.Linq.NotNull
 			return list;
 		}
 
-		public static NotNullDictionary<TKey, TValue> ToDictionary<TSource, TKey, TValue>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TValue> valueSelector)
+		public static INotNullDictionary<TKey, TValue> ToDictionary<TSource, TKey, TValue>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TValue> valueSelector)
 		{
 			Contract.Requires(keySelector != null);
 			Contract.Requires(valueSelector != null);
-			Contract.Ensures(Contract.Result<NotNullDictionary<TKey, TValue>>() != null);
+			Contract.Ensures(Contract.Result<INotNullDictionary<TKey, TValue>>() != null);
 
 			if (source == null)
 				return new NotNullDictionary<TKey, TValue>();
@@ -204,10 +193,10 @@ namespace Zoltu.Linq.NotNull
 			return dictionary;
 		}
 
-		public static NotNullDictionary<TKey, TSource> ToDictionary<TSource, TKey>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+		public static INotNullDictionary<TKey, TSource> ToDictionary<TSource, TKey>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> keySelector)
 		{
 			Contract.Requires(keySelector != null);
-			Contract.Ensures(Contract.Result<NotNullDictionary<TKey, TSource>>() != null);
+			Contract.Ensures(Contract.Result<INotNullDictionary<TKey, TSource>>() != null);
 
 			if (source == null)
 				return new NotNullDictionary<TKey, TSource>();
