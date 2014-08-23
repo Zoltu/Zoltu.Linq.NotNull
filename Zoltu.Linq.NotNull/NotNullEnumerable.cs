@@ -224,5 +224,16 @@ namespace Zoltu.Linq.NotNull
 			return count;
 		}
 
+		public static Boolean Any<T>(this INotNullEnumerable<T> source)
+		{
+			if (source == null)
+				return false;
+
+			using (var enumerator = source.GetEnumerator())
+			{
+				return enumerator.MoveNext();
+			}
+		}
+
 	}
 }
