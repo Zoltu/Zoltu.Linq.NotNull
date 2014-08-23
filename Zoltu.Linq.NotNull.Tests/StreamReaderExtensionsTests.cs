@@ -7,6 +7,19 @@ namespace Zoltu.Linq.NotNull.Tests
 	public class StreamReaderExtensionsTests
 	{
 		[Fact]
+		public void when_stream_reader_is_null_then_empty_enumerable_is_returned()
+		{
+			// Arrange
+			var streamReader = null as StreamReader;
+
+			// Act
+			var enumerable = streamReader.ToLines();
+
+			// Assert
+			Assert.False(enumerable.Any());
+		}
+
+		[Fact]
 		public void when_stream_is_empty_then_ToLineEnumerable_returns_empty_enumerable()
 		{
 			// Arrange

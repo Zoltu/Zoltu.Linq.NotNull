@@ -9,16 +9,8 @@ namespace Zoltu.Linq.NotNull
 	{
 		private readonly StreamReader _streamReader;
 
-		[ContractInvariantMethod]
-		private void ObjectInvariant()
-		{
-			Contract.Invariant(_streamReader != null);
-		}
-
 		public StreamReaderLineEnumerable(StreamReader streamReader)
 		{
-			Contract.Requires(streamReader != null);
-
 			_streamReader = streamReader;
 		}
 
@@ -43,7 +35,8 @@ namespace Zoltu.Linq.NotNull
 
 		public StreamReaderLineEnumerator(StreamReader streamReader)
 		{
-			Contract.Requires(streamReader != null);
+			if (streamReader == null)
+				streamReader = StreamReader.Null;
 
 			_streamReader = streamReader;
 		}
@@ -116,6 +109,8 @@ namespace Zoltu.Linq.NotNull
 		/// <returns>A stream of all the lines in the StreamReader.</returns>
 		public static INotNullEnumerable<String> ToLines(this StreamReader source)
 		{
+			Contract.Ensures(Contract.Result<INotNullEnumerable<String>>() != null);
+
 			return new StreamReaderLineEnumerable(source);
 		}
 	}
