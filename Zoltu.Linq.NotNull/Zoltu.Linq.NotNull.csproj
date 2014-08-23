@@ -128,6 +128,7 @@
     <Compile Include="NotNullEnumerable.cs" />
     <Compile Include="SelectAndSwallowIterator.cs" />
     <Compile Include="SelectIterator.cs" />
+    <Compile Include="StreamReaderExtensions.cs" />
     <Compile Include="WhereIterator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
