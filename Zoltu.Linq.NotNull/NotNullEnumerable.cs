@@ -12,7 +12,7 @@ namespace Zoltu.Linq.NotNull
 			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
 
 			if (source == null)
-				return new NotNullList<TResult>();
+				return EmptyEnumerable<TResult>.Instance;
 
 			return new SelectIterator<TSource, TResult>(source, predicate);
 		}
@@ -24,7 +24,7 @@ namespace Zoltu.Linq.NotNull
 			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
 
 			if (source == null)
-				return new NotNullList<TResult>();
+				return EmptyEnumerable<TResult>.Instance;
 
 			return new SelectAndSwallowIterator<TSource, TResult, TException>(source, predicate);
 		}
@@ -35,7 +35,7 @@ namespace Zoltu.Linq.NotNull
 			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
 
 			if (source == null)
-				return new NotNullList<TResult>();
+				return EmptyEnumerable<TResult>.Instance;
 
 			return new SelectAndSwallowIterator<TSource, TResult, Exception>(source, predicate);
 		}
@@ -46,7 +46,7 @@ namespace Zoltu.Linq.NotNull
 			Contract.Ensures(Contract.Result<INotNullEnumerable<T>>() != null);
 
 			if (source == null)
-				return new NotNullList<T>();
+				return EmptyEnumerable<T>.Instance;
 
 			return new WhereIterator<T>(source, predicate);
 		}
@@ -234,6 +234,5 @@ namespace Zoltu.Linq.NotNull
 				return enumerator.MoveNext();
 			}
 		}
-
 	}
 }
