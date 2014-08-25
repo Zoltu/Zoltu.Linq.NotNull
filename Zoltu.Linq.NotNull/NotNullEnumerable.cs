@@ -14,7 +14,7 @@ namespace Zoltu.Linq.NotNull
 			if (source == null)
 				return EmptyEnumerable<TResult>.Instance;
 
-			return new SelectIterator<TSource, TResult>(source, predicate);
+			return new SelectEnumerable<TSource, TResult>(source, predicate);
 		}
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
@@ -26,7 +26,7 @@ namespace Zoltu.Linq.NotNull
 			if (source == null)
 				return EmptyEnumerable<TResult>.Instance;
 
-			return new SelectAndSwallowIterator<TSource, TResult, TException>(source, predicate);
+			return new SelectAndSwallowEnumerable<TSource, TResult, TException>(source, predicate);
 		}
 
 		public static INotNullEnumerable<TResult> SelectAndSwallow<TSource, TResult>(this INotNullEnumerable<TSource> source, Func<TSource, TResult> predicate)
@@ -37,7 +37,7 @@ namespace Zoltu.Linq.NotNull
 			if (source == null)
 				return EmptyEnumerable<TResult>.Instance;
 
-			return new SelectAndSwallowIterator<TSource, TResult, Exception>(source, predicate);
+			return new SelectAndSwallowEnumerable<TSource, TResult, Exception>(source, predicate);
 		}
 
 		public static INotNullEnumerable<T> Where<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
@@ -48,7 +48,7 @@ namespace Zoltu.Linq.NotNull
 			if (source == null)
 				return EmptyEnumerable<T>.Instance;
 
-			return new WhereIterator<T>(source, predicate);
+			return new WhereEnumerable<T>(source, predicate);
 		}
 
 		public static T FirstOrDefault<T>(this INotNullEnumerable<T> source)

@@ -27,7 +27,7 @@ namespace Zoltu.Linq.NotNull
 		private States _state = States.BeforeFirst;
 
 		[ContractInvariantMethod]
-		private void ObjectInvariant()
+		private void ContractInvariants()
 		{
 			Contract.Invariant(_streamReader != null);
 			Contract.Invariant(_current != null || _state != States.Enumerating);

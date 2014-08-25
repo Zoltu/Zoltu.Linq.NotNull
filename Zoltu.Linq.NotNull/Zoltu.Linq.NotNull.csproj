@@ -124,12 +124,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Iterator.cs" />
     <Compile Include="NotNullEnumerable.cs" />
-    <Compile Include="SelectAndSwallowIterator.cs" />
-    <Compile Include="SelectIterator.cs" />
+    <Compile Include="SelectAndSwallowEnumerable.cs" />
+    <Compile Include="SelectEnumerable.cs" />
     <Compile Include="StreamReaderExtensions.cs" />
-    <Compile Include="WhereIterator.cs" />
+    <Compile Include="WhereEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
