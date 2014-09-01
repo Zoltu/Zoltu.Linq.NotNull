@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Threading.Tasks;
 using Zoltu.Collections.Generic.NotNull;
 
 namespace Zoltu.Linq.NotNull
@@ -233,6 +234,31 @@ namespace Zoltu.Linq.NotNull
 			{
 				return enumerator.MoveNext();
 			}
+		}
+
+		/// <summary>
+		/// Returns a task that will complete when all of the items in the enumerable have completed.
+		/// </summary>
+		/// <remarks>This will enumerate and copy the enumerable, be aware of this when using it with very large collections.</remarks>
+		public static async Task<INotNullEnumerable<T>> WhenAllAsync<T>(this INotNullEnumerable<Task<T>> source)
+		{
+			if (source == null)
+				return EmptyEnumerable<T>.Instance;
+
+			var results = await Task.WhenAll(source.NotNullToNull());
+			return results.NotNull();
+		}
+
+		/// <summary>
+		/// Blocks until all of the items in the enumerable have completed.
+		/// </summary>
+		/// <remarks>This will enumerate and copy the enumerable, be aware of this when using it with very large collections.</remarks>
+		public static INotNullEnumerable<T> WhenAllSync<T>(this INotNullEnumerable<Task<T>> source)
+		{
+			if (source == null)
+				return EmptyEnumerable<T>.Instance;
+
+			return source.WhenAllAsync().Result;
 		}
 	}
 }
