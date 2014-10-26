@@ -205,6 +205,27 @@ namespace Zoltu.Linq.NotNull
 			return ToDictionary(source, keySelector, x => x);
 		}
 
+		public static INotNullSet<T> ToHashSet<T>(this INotNullEnumerable<T> source)
+		{
+			Contract.Ensures(Contract.Result<INotNullSet<T>>() != null);
+
+			if (source == null)
+				return new NotNullHashSet<T>();
+
+			return new NotNullHashSet<T>(source);
+		}
+
+		public static INotNullSet<TKey> ToHashSet<TSource, TKey>(this INotNullEnumerable<TSource> source, Func<TSource, TKey> selector)
+		{
+			Contract.Requires(selector != null);
+			Contract.Ensures(Contract.Result<INotNullSet<TKey>>() != null);
+
+			if (source == null)
+				return new NotNullHashSet<TKey>();
+
+			return new NotNullHashSet<TKey>(source.Select(selector));
+		}
+
 		public static Int32 Count<T>(this INotNullEnumerable<T> source)
 		{
 			Contract.Ensures(Contract.Result<Int32>() >= 0);
@@ -236,6 +257,7 @@ namespace Zoltu.Linq.NotNull
 			}
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		/// <summary>
 		/// Returns a task that will complete when all of the items in the enumerable have completed.
 		/// </summary>
@@ -249,6 +271,7 @@ namespace Zoltu.Linq.NotNull
 			return results.NotNull();
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		/// <summary>
 		/// Blocks until all of the items in the enumerable have completed.
 		/// </summary>

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="StreamReaderExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToHashSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
