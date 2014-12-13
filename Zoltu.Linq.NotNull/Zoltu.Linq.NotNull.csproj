@@ -133,6 +133,7 @@
     <Compile Include="NotNullEnumerable.cs" />
     <Compile Include="SelectAndSwallowEnumerable.cs" />
     <Compile Include="SelectEnumerable.cs" />
+    <Compile Include="SelectManyEnumerable.cs" />
     <Compile Include="StreamReaderExtensions.cs" />
     <Compile Include="WhereEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
