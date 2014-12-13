@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SelectManyEnumerableExtensions.cs" />
     <Compile Include="StreamReaderExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToHashSet.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Threading.Tasks;
 using Zoltu.Collections.Generic.NotNull;
 
@@ -39,6 +40,18 @@ namespace Zoltu.Linq.NotNull
 				return EmptyEnumerable<TResult>.Instance;
 
 			return new SelectAndSwallowEnumerable<TSource, TResult, Exception>(source, predicate);
+		}
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+		public static INotNullEnumerable<TResult> SelectMany<TSource, TResult>(this INotNullEnumerable<TSource> source, Func<TSource, INotNullEnumerable<TResult>> selector)
+		{
+			Contract.Requires(selector != null);
+			Contract.Ensures(Contract.Result<INotNullEnumerable<TResult>>() != null);
+
+			if (source == null)
+				return EmptyEnumerable<TResult>.Instance;
+
+			return new SelectManyEnumerable<TSource, TResult>(source, selector);
 		}
 
 		public static INotNullEnumerable<T> Where<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
