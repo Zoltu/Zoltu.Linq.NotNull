@@ -104,12 +104,79 @@ namespace Zoltu.Linq.NotNull
 		public static T First<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
 		{
 			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
-			Contract.Requires(predicate != null);
 			Contract.Ensures(Contract.Result<T>() != null);
+
+			predicate = predicate ?? (x => true);
 
 			return source
 				.Where(predicate)
 				.First();
+		}
+
+		public static T LastOrDefault<T>(this INotNullEnumerable<T> source)
+		{
+			if (source == null)
+				return default (T);
+
+			T result;
+			var enumerator = source.GetEnumerator();
+
+			if (enumerator.MoveNext())
+				result = enumerator.Current;
+			else
+				return default(T);
+
+			while (enumerator.MoveNext())
+			{
+				result = enumerator.Current;
+			}
+
+			return result;
+		}
+
+		public static T LastOrDefault<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
+		{
+			if (source == null)
+				return default (T);
+
+			predicate = predicate ?? (x => true);
+
+			return source
+				.Where(predicate)
+				.LastOrDefault();
+		}
+
+		public static T Last<T>(this INotNullEnumerable<T> source)
+		{
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
+			Contract.Ensures(Contract.Result<T>() != null);
+
+			T result;
+			var enumerator = source.GetEnumerator();
+
+			if (enumerator.MoveNext())
+				result = enumerator.Current;
+			else
+				throw new InvalidOperationException("The source sequence is empty.");
+
+			while (enumerator.MoveNext())
+			{
+				result = enumerator.Current;
+			}
+
+			return result;
+		}
+
+		public static T Last<T>(this INotNullEnumerable<T> source, Func<T, Boolean> predicate)
+		{
+			Contract.Requires<InvalidOperationException>(source != null, "The source was null.");
+			Contract.Ensures(Contract.Result<T>() != null);
+
+			predicate = predicate ?? (x => true);
+
+			return source
+				.Where(predicate)
+				.Last();
 		}
 
 		public static T Single<T>(this INotNullEnumerable<T> source)
