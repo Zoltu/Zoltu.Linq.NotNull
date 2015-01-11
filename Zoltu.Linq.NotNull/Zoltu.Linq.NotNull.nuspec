@@ -15,6 +15,7 @@
 		</references>
 	</metadata>
 	<files>
+		<file src="Zoltu.Linq.NotNull.xml" target="lib\net451" />
 		<file src="CodeContracts\*.dll" target="lib\net451\CodeContracts" />
 	</files>
 </package>
