@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
@@ -244,6 +245,24 @@ namespace Zoltu.Linq.NotNull
 			return first
 				.NotNullToNull()
 				.Concat(second.NotNullToNull())
+				.NotNull();
+		}
+
+		public static INotNullEnumerable<T> Distinct<T>(this INotNullEnumerable<T> source)
+		{
+			return source.Distinct(null);
+		}
+
+		public static INotNullEnumerable<T> Distinct<T>(this INotNullEnumerable<T> source, IEqualityComparer<T> comparer)
+		{
+			Contract.Requires(comparer != null);
+
+			if (source == null)
+				return EmptyEnumerable<T>.Instance;
+
+			return source
+				.NotNullToNull()
+				.Distinct(comparer)
 				.NotNull();
 		}
 
