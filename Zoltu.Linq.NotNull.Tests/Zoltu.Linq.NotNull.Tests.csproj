@@ -40,9 +40,9 @@
     <Reference Include="xunit">
       <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="Zoltu.Collections.Generic.NotNull, Version=1.0.11.0, Culture=neutral, PublicKeyToken=40ae7ac78fbd70f2, processorArchitecture=MSIL">
+    <Reference Include="Zoltu.Collections.Generic.NotNull, Version=1.0.15.0, Culture=neutral, PublicKeyToken=40ae7ac78fbd70f2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.11.0\lib\net451\Zoltu.Collections.Generic.NotNull.dll</HintPath>
+      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.15.0\lib\net40\Zoltu.Collections.Generic.NotNull.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

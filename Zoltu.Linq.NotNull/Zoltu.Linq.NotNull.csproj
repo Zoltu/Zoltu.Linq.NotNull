@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
-    <NuGetPackageImportStamp>c54385d6</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>8f94981f</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -127,9 +127,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Zoltu.Collections.Generic.NotNull, Version=1.0.11.0, Culture=neutral, PublicKeyToken=40ae7ac78fbd70f2, processorArchitecture=MSIL">
+    <Reference Include="Zoltu.Collections.Generic.NotNull, Version=1.0.15.0, Culture=neutral, PublicKeyToken=40ae7ac78fbd70f2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.11.0\lib\net451\Zoltu.Collections.Generic.NotNull.dll</HintPath>
+      <HintPath>..\packages\Zoltu.Collections.Generic.NotNull.1.0.15.0\lib\net40\Zoltu.Collections.Generic.NotNull.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -158,10 +158,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NuGet.for.MSBuild.1.4.3\build\NuGet.for.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.for.MSBuild.1.4.3\build\NuGet.for.MSBuild.targets'))" />
-    <Error Condition="!Exists('..\packages\Zoltu.Versioning.1.1.29.0\build\Zoltu.Versioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zoltu.Versioning.1.1.29.0\build\Zoltu.Versioning.targets'))" />
+    <Error Condition="!Exists('..\packages\Zoltu.Versioning.1.2.15.0\build\Zoltu.Versioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Zoltu.Versioning.1.2.15.0\build\Zoltu.Versioning.targets'))" />
   </Target>
   <Import Project="..\packages\NuGet.for.MSBuild.1.4.3\build\NuGet.for.MSBuild.targets" Condition="Exists('..\packages\NuGet.for.MSBuild.1.4.3\build\NuGet.for.MSBuild.targets')" />
-  <Import Project="..\packages\Zoltu.Versioning.1.1.29.0\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning.1.1.29.0\build\Zoltu.Versioning.targets')" />
+  <Import Project="..\packages\Zoltu.Versioning.1.2.15.0\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning.1.2.15.0\build\Zoltu.Versioning.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
