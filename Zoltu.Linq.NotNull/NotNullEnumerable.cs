@@ -234,6 +234,19 @@ namespace Zoltu.Linq.NotNull
 				.SingleOrDefault();
 		}
 
+		public static INotNullEnumerable<T> Concat<T>(this INotNullEnumerable<T> first, INotNullEnumerable<T> second)
+		{
+			Contract.Ensures(Contract.Result<INotNullEnumerable<T>>() != null);
+
+			first = first ?? EmptyEnumerable<T>.Instance;
+			second = second ?? EmptyEnumerable<T>.Instance;
+
+			return first
+				.NotNullToNull()
+				.Concat(second.NotNullToNull())
+				.NotNull();
+		}
+
 		public static NotNullList<T> ToList<T>(this INotNullEnumerable<T> source)
 		{
 			Contract.Ensures(Contract.Result<NotNullList<T>>() != null);

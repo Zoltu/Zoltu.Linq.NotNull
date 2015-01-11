@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumerableConcatTests.cs" />
     <Compile Include="EnumerableLastTests.cs" />
     <Compile Include="SelectManyEnumerableExtensions.cs" />
     <Compile Include="StreamReaderExtensionsTests.cs" />
