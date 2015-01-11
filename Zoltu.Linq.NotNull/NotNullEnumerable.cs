@@ -255,8 +255,6 @@ namespace Zoltu.Linq.NotNull
 
 		public static INotNullEnumerable<T> Distinct<T>(this INotNullEnumerable<T> source, IEqualityComparer<T> comparer)
 		{
-			Contract.Requires(comparer != null);
-
 			if (source == null)
 				return EmptyEnumerable<T>.Instance;
 
