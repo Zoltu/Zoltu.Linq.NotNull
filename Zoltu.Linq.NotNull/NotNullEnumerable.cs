@@ -337,11 +337,11 @@ namespace Zoltu.Linq.NotNull
 			}
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		/// <summary>
 		/// Returns a task that will complete when all of the items in the enumerable have completed.
 		/// </summary>
 		/// <remarks>This will enumerate and copy the enumerable, be aware of this when using it with very large collections.</remarks>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		public static async Task<INotNullEnumerable<T>> WhenAllAsync<T>(this INotNullEnumerable<Task<T>> source)
 		{
 			if (source == null)
@@ -351,11 +351,11 @@ namespace Zoltu.Linq.NotNull
 			return results.NotNull();
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		/// <summary>
 		/// Blocks until all of the items in the enumerable have completed.
 		/// </summary>
 		/// <remarks>This will enumerate and copy the enumerable, be aware of this when using it with very large collections.</remarks>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		public static INotNullEnumerable<T> WhenAllSync<T>(this INotNullEnumerable<Task<T>> source)
 		{
 			if (source == null)
